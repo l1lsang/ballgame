@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#090c1a" />
+    <meta name="description" content="먹고, 성장하고, 왕관을 차지하는 실시간 공 게임" />
+    <title>왕관을 먹어라! — Ball Crown Arena</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas" aria-label="공 게임 플레이 화면"></canvas>
+
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="처음 화면으로">
+          <span class="brand-ball"><i></i></span>
+          <span><b>BALL</b> CROWN</span>
+        </a>
+        <div class="server-status" id="server-status"><i></i><span>로컬 아레나</span></div>
+        <button class="icon-button" id="sound-button" aria-label="소리 켜기/끄기">♬</button>
+      </header>
+
+      <section class="player-hud" id="player-hud" hidden>
+        <div class="level-chip"><small>LEVEL</small><strong id="level-value">1</strong></div>
+        <div class="xp-wrap">
+          <div class="xp-label"><span id="player-name-label">플레이어</span><b id="xp-text">0 / 6 XP</b></div>
+          <div class="xp-bar"><i id="xp-fill"></i></div>
+        </div>
+      </section>
+
+      <aside class="leaderboard glass" id="leaderboard" hidden>
+        <div class="panel-title"><span>TOP BALLS</span><small>실시간 랭킹</small></div>
+        <ol id="leaderboard-list"></ol>
+      </aside>
+
+      <aside class="minimap-wrap glass" id="minimap-wrap" hidden>
+        <canvas id="minimap" width="160" height="160" aria-label="미니맵"></canvas>
+        <span>ARENA MAP</span>
+      </aside>
+
+      <div class="controls-hint glass" id="controls-hint" hidden>
+        <span><kbd>WASD</kbd> 이동</span><i></i><span><b>마우스</b> 방향 조종</span>
+      </div>
+
+      <main class="start-screen" id="start-screen">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-ball" aria-hidden="true">
+          <div class="hero-crown">♛</div>
+          <div class="hero-face"><i></i><i></i><b></b></div>
+          <span>LV. 1</span>
+        </div>
+
+        <div class="start-card">
+          <div class="eyebrow"><i></i> 실시간 성장 아레나</div>
+          <h1>먹고. 커지고.<br /><em>왕이 되어라!</em></h1>
+          <p>작은 먹이부터 시작해 더 큰 공으로 성장하세요.<br />단, 나보다 레벨 높은 공은 무조건 피하세요!</p>
+
+          <form id="start-form">
+            <label for="nickname">플레이어 이름</label>
+            <div class="input-row">
+              <input id="nickname" maxlength="12" autocomplete="off" placeholder="이름을 입력하세요" value="말랑이" />
+              <button type="submit"><span>게임 시작</span><b>→</b></button>
+            </div>
+          </form>
+
+          <div class="rules">
+            <div><span class="rule-icon food-icon">✦</span><p><b>먹이를 먹어 성장</b><small>먹이를 모으면 레벨 UP!</small></p></div>
+            <div><span class="rule-icon hunt-icon">◉</span><p><b>작은 공을 사냥</b><small>레벨이 낮은 공만 먹을 수 있어요</small></p></div>
+            <div><span class="rule-icon crown-icon">♛</span><p><b>1등은 왕관 획득</b><small>가장 높은 레벨에 도전하세요</small></p></div>
+          </div>
+        </div>
+
+        <footer><span>TIP</span> 화면 가장자리의 경고 표시를 잘 살펴보세요.</footer>
+      </main>
+
+      <section class="death-screen" id="death-screen" hidden>
+        <div class="death-ring"></div>
+        <h2>꿀꺽!</h2>
+        <p><b id="eater-name">큰 공</b>에게 잡아먹혔어요</p>
+        <small>레벨 1로 다시 시작합니다</small>
+        <strong id="respawn-count">2</strong>
+      </section>
+
+      <div class="mobile-stick" id="mobile-stick" hidden><i></i></div>
+      <div class="toast" id="toast" role="status"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
