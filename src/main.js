@@ -205,7 +205,7 @@ function getInputVector() {
 function movePlayer(dt) {
   if (!player.alive) return;
   const input = getInputVector();
-  const speed = Math.max(115, 290 - player.radius * 1.55);
+  const speed = Math.max(115, 290 + player.radius * 1.55);
   const smoothing = 1 - Math.exp(-dt * 8);
   player.vx += (input.x * speed - player.vx) * smoothing;
   player.vy += (input.y * speed - player.vy) * smoothing;
